@@ -16,4 +16,13 @@ export default defineConfig({
       refresh: true,
     }),
   ],
+  build: {
+    rollupOptions: {
+      external: [
+        '/storage/images/no_image.jpg',
+        '/storage/images/loading.gif',
+        '/storage/images/logo.jpg',
+      ],
+    },
+  },
 });
