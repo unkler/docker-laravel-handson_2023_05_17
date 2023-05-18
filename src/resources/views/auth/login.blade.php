@@ -11,20 +11,20 @@
 
             <!-- Email Address -->
             <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" placeholder="{{ __('Email') }}" required autofocus />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
                 <x-input id="password" class="block mt-1 w-full"
                                 type="password"
                                 name="password"
-                                required autocomplete="current-password" />
+                                required autocomplete="current-password" placeholder="{{ __('Password') }}" />
             </div>
+
+            <x-button class="mt-4">
+                {{ __('Log in') }}
+            </x-button>
 
             <!-- Remember Me -->
             <div class="block mt-4">
@@ -40,10 +40,6 @@
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
-
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
             </div>
         </form>
     </x-auth-card>
