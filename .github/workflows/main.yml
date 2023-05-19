@@ -28,7 +28,7 @@ jobs:
       - name: セットアップ PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4' # 使用するPHPバージョンを指定してください
+          php-version: '8.1.19' # 使用するPHPバージョンを指定してください
 
       - name: Composer インストールと依存関係の更新
         run: |
