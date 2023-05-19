@@ -34,7 +34,7 @@ jobs:
         run: cd src && pwd
 
       - name: Composer インストール
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: pwd && composer install --prefer-dist --no-progress --no-suggest
 
       - name: ユニットテスト
         run: php artisan test
