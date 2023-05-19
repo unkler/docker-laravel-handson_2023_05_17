@@ -25,16 +25,14 @@ jobs:
         uses: actions/checkout@v2
 
       - name: ユニットテストの実行
-        uses: docker://php:7.4-cli
-        with:
-          env:
-            DB_CONNECTION: mysql
-            DB_HOST: mysql
-            DB_PORT: 3306
-            DB_DATABASE: laravel_test
-            DB_USERNAME: root
-            DB_PASSWORD: password
-          run: |
-            cp .env.example .env
-            docker run --rm -v $PWD:/app -w /app php:7.4-cli composer install --prefer-dist --no-progress --no-suggest
-            docker-compose run --rm app php artisan test
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: localhost
+          DB_PORT: 3306
+          DB_DATABASE: laravel_test
+          DB_USERNAME: root
+          DB_PASSWORD: password
+        run: |
+          cp .env.testing .env
+          composer install --prefer-dist --no-progress --no-suggest
+          php artisan test
