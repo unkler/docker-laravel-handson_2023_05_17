@@ -25,7 +25,13 @@ jobs:
       - name: チェックアウト
         uses: actions/checkout@v2
 
+      - name: セットアップ PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4' # 使用するPHPバージョンを指定してください
+
+      - name: Composer インストール
+        run: composer install --prefer-dist --no-progress --no-suggest
+
       - name: ユニットテスト
-        run: |
-          composer install --prefer-dist --no-progress --no-suggest
-          php artisan test
+        run: php artisan test
