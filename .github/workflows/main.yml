@@ -1,4 +1,4 @@
-name: Laravel ユニットテスト
+name: ユニットテスト
 
 on:
   push:
@@ -11,28 +11,21 @@ jobs:
 
     services:
       mysql:
-        image: mysql:5.7
+        image: mysql/mysql-server:8.0
         env:
-          MYSQL_DATABASE: laravel_test
-          MYSQL_USER: root
           MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: test_database
+          MYSQL_USER: test_user
+          MYSQL_PASSWORD: test_password
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
-      - name: リポジトリのチェックアウト
+      - name: チェックアウト
         uses: actions/checkout@v2
 
-      - name: ユニットテストの実行
-        env:
-          DB_CONNECTION: mysql
-          DB_HOST: localhost
-          DB_PORT: 3306
-          DB_DATABASE: laravel_test
-          DB_USERNAME: root
-          DB_PASSWORD: password
+      - name: ユニットテスト
         run: |
-          cp .env.testing .env
           composer install --prefer-dist --no-progress --no-suggest
           php artisan test
