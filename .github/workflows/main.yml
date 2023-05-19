@@ -30,6 +30,9 @@ jobs:
         with:
           php-version: '7.4' # 使用するPHPバージョンを指定してください
 
+      - name: カレントディレクトリを確認
+        run: pwd
+
       - name: Composer インストール
         run: composer install --prefer-dist --no-progress --no-suggest
 
