@@ -30,11 +30,10 @@ jobs:
         with:
           php-version: '7.4' # 使用するPHPバージョンを指定してください
 
-      - name: カレントディレクトリを確認
-        run: cd src && pwd
-
-      - name: Composer インストール
-        run: cd src && composer install --prefer-dist --no-progress --no-suggest
+      - name: Composer インストールと依存関係の更新
+        run: |
+            cd src
+            composer install --prefer-dist --no-progress --no-suggest --no-interaction --optimize-autoloader
 
       - name: ユニットテスト
         run: php artisan test
