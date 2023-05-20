@@ -35,7 +35,9 @@ jobs:
           cat .env
           # php artisan migrate
         env:
-          MYSQL_DATABASE: laravel
-          MYSQL_USER: admin
-          MYSQL_PASSWORD: password
-          MYSQL_ROOT_PASSWORD: password
+          DB_CONNECTION: mysql
+          DB_HOST: db
+          DB_PORT: 3306
+          DB_DATABASE: laravel
+          DB_USERNAME: admin
+          DB_PASSWORD: password
