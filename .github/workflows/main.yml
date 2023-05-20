@@ -15,7 +15,6 @@ jobs:
 
       - name: Build Docker images
         run: docker-compose build --no-cache
-        working-directory: ./path/to/docker/compose
 
       - name: Start Docker Compose
         run: docker-compose up -d
