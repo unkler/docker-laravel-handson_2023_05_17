@@ -32,7 +32,8 @@ jobs:
           cd src
           cp .env.example .env
           php artisan key:generate
-          php artisan migrate
+          cat .env
+          # php artisan migrate
         env:
           MYSQL_DATABASE: laravel
           MYSQL_USER: admin
