@@ -32,4 +32,7 @@ jobs:
           php artisan migrate
         env:
           DB_HOST: 127.0.0.1
-          DB_DATABASE: test_laravel
+          MYSQL_DATABASE: laravel
+          MYSQL_USER: admin
+          MYSQL_PASSWORD: password
+          MYSQL_ROOT_PASSWORD: password
