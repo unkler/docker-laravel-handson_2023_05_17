@@ -48,7 +48,6 @@ jobs:
           cd src
           cp .env.example .env
           php artisan key:generate
-          php artisan migrate
 
       - name: Start Laravel Development Server
         run: |
