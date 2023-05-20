@@ -49,10 +49,21 @@ jobs:
           cp .env.example .env
           php artisan key:generate
           php artisan migrate
-          php artisan serve --port=8000 --quiet &
-          php artisan test
+
+      - name: Start Laravel Development Server
+        run: |
+          cd src
+          php artisan serve --port=8000 --quiet > /dev/null 2>&1 &
+        
+      - name: Wait for Laravel Development Server to start
+        run: sleep 5
+      
+      - name: Run tests
         env:
           APP_ENV: testing
           APP_URL: http://localhost:8000
           DB_HOST: 127.0.0.1
           DB_DATABASE: test_laravel
+        run: |
+          cd src
+          php artisan test
