@@ -43,28 +43,14 @@ jobs:
           cd src
           composer install --prefer-dist --no-progress
 
-      # - name: Set up Node.js
-      #   uses: actions/setup-node@v2
-      #   with:
-      #     node-version: '16.x'
-
-      # - name: Install npm dependencies
-      #   run: |
-      #     cd src
-      #     npm ci
-
       - name: Set up environment variables
         run: |
           cd src
           cp .env.example .env
           php artisan key:generate
           php artisan migrate
+          php artisan serve --port=80 --quiet &
           php artisan test
         env:
           DB_HOST: 127.0.0.1
           DB_DATABASE: test_laravel
-
-      # - name: Run tests
-      #   run: |
-      #     cd src
-      #     php artisan test
