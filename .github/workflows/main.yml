@@ -64,7 +64,7 @@ jobs:
         run: |
           cd src
           cp .env.example .env
-          sed -i "s/DB
+          sed -i "s/DB"
 
       - name: Run tests
         run: |
