@@ -32,8 +32,7 @@ jobs:
           cd src
           cp .env.example .env
           php artisan key:generate
-          cat .env
-          # php artisan migrate
+          php artisan migrate
         env:
           DB_CONNECTION: mysql
           DB_HOST: db
