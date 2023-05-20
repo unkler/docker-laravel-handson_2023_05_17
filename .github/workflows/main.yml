@@ -55,4 +55,6 @@ jobs:
           npm ci
 
       - name: Run tests
-        run: php artisan test
+        run: |
+          cd src
+          php artisan test
