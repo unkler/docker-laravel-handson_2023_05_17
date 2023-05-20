@@ -54,6 +54,18 @@ jobs:
           cd src
           npm ci
 
+      - name: Set up environment variables
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_DATABASE: ${{ secrets.DB_DATABASE }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: |
+          cd src
+          cp .env.example .env
+          sed -i "s/DB
+
       - name: Run tests
         run: |
           cd src
