@@ -58,7 +58,7 @@ jobs:
           cd src
           cp .env.example .env
           php artisan key:generate
-          php php artisan migrate
+          php artisan migrate
 
       # - name: Run tests
       #   run: |
