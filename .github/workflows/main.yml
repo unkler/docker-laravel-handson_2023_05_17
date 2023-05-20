@@ -9,26 +9,25 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    services:
-      mysql:
-        image: mysql/mysql-server:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: test_database
-          MYSQL_USER: test_user
-          MYSQL_PASSWORD: test_password
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
     steps:
+      - name: Start MySQL service
+        uses: docker-compose-up-action@v1
+        with:
+          compose-file: docker-compose.yml
+          service-name: mysql
+          env-vars: |
+            MYSQL_ROOT_PASSWORD=password
+            MYSQL_DATABASE=test_database
+            MYSQL_USER=test_user
+            MYSQL_PASSWORD=test_password
+
       - name: チェックアウト
         uses: actions/checkout@v2
 
       - name: セットアップ PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1.19' # 使用するPHPバージョンを指定してください
+          php-version: '8.1.19'
           extensions: intl,pdo_mysql,zip,bcmath
           ini-values: |
             memory_limit=512M
@@ -57,11 +56,11 @@ jobs:
       - name: Run tests
         env:
           DB_CONNECTION: mysql
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_PORT: ${{ secrets.DB_PORT }}
-          DB_DATABASE: ${{ secrets.DB_DATABASE }}
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_HOST: mysql
+          DB_PORT: 3306
+          DB_DATABASE: test_database
+          DB_USERNAME: test_user
+          DB_PASSWORD: test_password
         run: |
           cd src
           php artisan test
