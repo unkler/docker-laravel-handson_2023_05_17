@@ -16,6 +16,11 @@ jobs:
       - name: Start Docker Compose
         run: docker-compose up -d
 
+      - name: Install dependencies
+        run: |
+          cd src
+          composer install --prefer-dist --no-progres
+
       - name: Set up environment variables
         run: |
           cd src
