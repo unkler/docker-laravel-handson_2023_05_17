@@ -14,7 +14,7 @@ jobs:
         image: mysql:8.0
         env:
           MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: test_laravel
+          MYSQL_DATABASE: laravel
           MYSQL_USER: phper
           MYSQL_PASSWORD: secret
         ports:
@@ -62,6 +62,7 @@ jobs:
           php artisan test
         env:
           DB_HOST: 127.0.0.1
+          DB_DATABASE: test_laravel
 
       # - name: Run tests
       #   run: |
