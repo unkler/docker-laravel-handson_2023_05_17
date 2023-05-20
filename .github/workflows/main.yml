@@ -29,11 +29,26 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1.19' # 使用するPHPバージョンを指定してください
+          extensions: intl,pdo_mysql,zip,bcmath
+          ini-values: |
+            memory_limit=512M
 
-      - name: Composer インストールと依存関係の更新
-        run: |
-            cd src
-            composer install --prefer-dist --no-progress --no-suggest --no-interaction --optimize-autoloader
+            - name: Set up Composer
+            run: |
+              curl -sS https://getcomposer.org/installer -o composer-setup.php
+              php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+              rm composer-setup.php
+    
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
 
-      - name: ユニットテスト
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Run tests
         run: php artisan test
