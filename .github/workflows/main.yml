@@ -63,8 +63,9 @@ jobs:
           sed -i "s/DB_USERNAME=root/DB_USERNAME=${{ secrets.DB_USERNAME }}/" .env
           sed -i "s/DB_PASSWORD=/DB_PASSWORD=${{ secrets.DB_PASSWORD }}/" .env
           cat .env
-
-      - name: Run tests
-        run: |
-          cd src
           php artisan test
+
+      # - name: Run tests
+      #   run: |
+      #     cd src
+      #     php artisan test
