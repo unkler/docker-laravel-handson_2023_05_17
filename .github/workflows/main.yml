@@ -9,25 +9,26 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Start MySQL service
-        uses: docker-compose-up-action@v1
-        with:
-          compose-file: docker-compose.yml
-          service-name: mysql
-          env-vars: |
-            MYSQL_ROOT_PASSWORD=password
-            MYSQL_DATABASE=test_database
-            MYSQL_USER=test_user
-            MYSQL_PASSWORD=test_password
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: test_database
+          MYSQL_USER: test_user
+          MYSQL_PASSWORD: test_password
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
+    steps:
       - name: チェックアウト
         uses: actions/checkout@v2
 
       - name: セットアップ PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1.19'
+          php-version: '8.1.19' # 使用するPHPバージョンを指定してください
           extensions: intl,pdo_mysql,zip,bcmath
           ini-values: |
             memory_limit=512M
@@ -53,14 +54,16 @@ jobs:
           cd src
           npm ci
 
+      - name: Set up environment variables
+        run: |
+          cp .env.example .env
+          sed -i "s/DB_HOST=127.0.0.1/DB_HOST=${{ secrets.DB_HOST }}/" .env
+          sed -i "s/DB_PORT=3306/DB_PORT=${{ secrets.DB_PORT }}/" .env
+          sed -i "s/DB_DATABASE=laravel/DB_DATABASE=${{ secrets.DB_DATABASE }}/" .env
+          sed -i "s/DB_USERNAME=root/DB_USERNAME=${{ secrets.DB_USERNAME }}/" .env
+          sed -i "s/DB_PASSWORD=/DB_PASSWORD=${{ secrets.DB_PASSWORD }}/" .env
+
       - name: Run tests
-        env:
-          DB_CONNECTION: mysql
-          DB_HOST: mysql
-          DB_PORT: 3306
-          DB_DATABASE: test_database
-          DB_USERNAME: test_user
-          DB_PASSWORD: test_password
         run: |
           cd src
           php artisan test
