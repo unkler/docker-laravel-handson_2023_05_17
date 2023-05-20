@@ -59,6 +59,7 @@ jobs:
           cp .env.example .env
           php artisan key:generate
           php artisan migrate
+          php artisan test
         env:
           DB_HOST: 127.0.0.1
 
