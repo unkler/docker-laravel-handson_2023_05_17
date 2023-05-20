@@ -9,17 +9,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: test_laravel
-          MYSQL_USER: phper
-          MYSQL_PASSWORD: secret
-        ports:
-          - 3306:3306
-
     steps:
       - name: チェックアウト
         uses: actions/checkout@v3
@@ -27,5 +16,9 @@ jobs:
       - name: Start Docker Compose
         run: docker-compose up -d
 
-      - name: Comfirm Docker Compose ps
-        run: docker-compose ps -a
+      - name: Set up environment variables
+        run: |
+          cd src
+          cp .env.example .env
+          php artisan key:generate
+          php artisan migrate
