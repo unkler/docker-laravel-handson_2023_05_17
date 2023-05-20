@@ -31,7 +31,5 @@ jobs:
           php artisan key:generate
           php artisan migrate
         env:
-            APP_ENV: testing
-            APP_URL: http://localhost:8000
-            DB_HOST: 127.0.0.1
-            DB_DATABASE: test_laravel
+          DB_HOST: 127.0.0.1
+          DB_DATABASE: test_laravel
