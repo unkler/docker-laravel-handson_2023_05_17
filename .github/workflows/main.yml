@@ -40,7 +40,9 @@ jobs:
           rm composer-setup.php
     
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
+        run: |
+          cd src
+          composer install --prefer-dist --no-progress
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
