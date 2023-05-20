@@ -33,11 +33,11 @@ jobs:
           ini-values: |
             memory_limit=512M
 
-            - name: Set up Composer
-            run: |
-              curl -sS https://getcomposer.org/installer -o composer-setup.php
-              php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-              rm composer-setup.php
+      - name: Set up Composer
+        run: |
+          curl -sS https://getcomposer.org/installer -o composer-setup.php
+          php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+          rm composer-setup.php
     
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
