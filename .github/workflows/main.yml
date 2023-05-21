@@ -21,9 +21,13 @@ jobs:
           key: ${{ runner.os }}-docker-${{ hashFiles('docker-compose.yml') }}
       - name: Start Docker Compose
         run: docker-compose up -d
-
+    
       - name: Wait for database container
-        run: docker-compose exec -T db sh -c 'until mysqladmin ping -h db --silent; do sleep 1; done'
+        run: sleep 10
+        
+      - name: Check database connection
+        run: |
+          docker-compose exec db sh -c "ping -c 3 db"
 
       - name: Install dependencies
         run: |
