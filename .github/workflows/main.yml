@@ -28,7 +28,7 @@ jobs:
           composer install --prefer-dist --no-progress
 
       - name: Wait DB
-        run : docker-compose exec -T db bash -c "mysqladmin --wait --count 60 ping -proot || exit 1"
+        run : docker-compose exec -T db bash -c "mysqladmin --wait --count 60 ping -ppassword || exit 1"
 
       - name: Set up environment variables
         run: |
