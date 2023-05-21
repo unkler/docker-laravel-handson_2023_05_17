@@ -22,8 +22,8 @@ jobs:
       - name: Start Docker Compose
         run: docker-compose up -d
 
-      - name: Wait for database to start
-        run: docker-compose exec -T db sh -c "while ! mysqladmin ping -h db --silent; do sleep 1; done"
+      - name: Docker network ls
+        run: docker network ls
 
       - name: Display Docker Compose logs
         run: |
