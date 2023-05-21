@@ -23,11 +23,10 @@ jobs:
         run: docker-compose up -d
     
       - name: Wait for database container
-        run: sleep 10
+        run: sleep 15
         
       - name: Check database connection
-        run: |
-          docker-compose exec db sh -c "ping -c 3 db"
+        run: docker-compose run --rm db sh -c "ping -c 3 db"
 
       - name: Install dependencies
         run: |
