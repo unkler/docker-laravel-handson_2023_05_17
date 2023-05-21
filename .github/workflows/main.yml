@@ -20,7 +20,7 @@ jobs:
             docker-compose.yml
           key: ${{ runner.os }}-docker-${{ hashFiles('docker-compose.yml') }}
       - name: Start Docker Compose
-        run: docker-compose up -d --wait
+        run: docker-compose up -d
 
       - name: Install dependencies
         run: |
