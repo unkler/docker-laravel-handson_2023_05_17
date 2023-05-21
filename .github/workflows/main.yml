@@ -33,7 +33,7 @@ jobs:
           cp .env.example .env
           php artisan key:generate
           chmod -R 777 storage bootstrap/cache
-          php artisan migrate
+          php artisan migrate:fresh --seed
         env:
           DB_CONNECTION: mysql
           DB_HOST: db
