@@ -22,12 +22,9 @@ jobs:
       - name: Start Docker Compose
         run: docker-compose up -d
 
-      - name: Docker network ls
-        run: docker network ls
-
-      - name: Display Docker Compose logs
+      - name: Display Docker Compose ps
         run: |
-          docker-compose logs
+          docker-compose ps
 
       - name: Install dependencies
         run: |
