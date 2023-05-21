@@ -21,12 +21,10 @@ jobs:
           key: ${{ runner.os }}-docker-${{ hashFiles('docker-compose.yml') }}
       - name: Start Docker Compose
         run: docker-compose up -d
-    
-      - name: Wait for database container
-        run: sleep 15
-        
-      - name: Check database connection
-        run: docker-compose run --rm db sh -c "ping -c 3 db"
+
+      - name: Display Docker Compose logs
+        run: |
+          docker-compose logs
 
       - name: Install dependencies
         run: |
