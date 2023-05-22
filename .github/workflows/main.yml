@@ -16,6 +16,14 @@ jobs:
       - name: Docker Version
         run: docker version
 
+      - name: Delete Cache
+        if: steps.cache.outputs.cache-hit == 'true'
+        run: |
+          curl -X DELETE \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/unkler/docker-laravel-handson_2023_05_17/actions/cache/cache"
+
       - name: Cache Composer dependencies
         uses: actions/cache@v2
         id: cache
