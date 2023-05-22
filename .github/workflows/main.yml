@@ -66,5 +66,5 @@ jobs:
       - name: Laravel PHPUnit Testing
         run: |
           docker-compose exec -T app php artisan config:clear
-          docker-compose exec -T app php artisan serve --port=80 --env=testing --quiet
+          docker-compose exec -T app php artisan serve --port=80 --env=testing --quiet &
           # docker-compose exec -T app php artisan test
