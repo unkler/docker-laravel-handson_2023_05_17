@@ -43,3 +43,4 @@ jobs:
           DB_DATABASE: laravel
           DB_USERNAME: admin
           DB_PASSWORD: password
+          QUEUE_CONNECTION: database
