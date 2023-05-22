@@ -50,15 +50,16 @@ jobs:
           docker-compose exec -T app php artisan key:generate
           docker-compose exec -T app php artisan optimize
           docker-compose exec -T app chmod -R 777 storage bootstrap/cache
+          docker-compose exec -T app php artisan migrate
+        env:
+          DB_USERNAME: admin
+          DB_PASSWORD: password
 
       - name: Laravel Version
         run: docker-compose exec -T app php artisan --version
 
       - name: Laravel Migrate Testing
         run: docker-compose exec -T app php artisan migrate
-        env:
-          DB_USERNAME: admin
-          DB_PASSWORD: password
 
       - name: Laravel Rollback Testing
         run: docker-compose exec -T app php artisan migrate:refresh
