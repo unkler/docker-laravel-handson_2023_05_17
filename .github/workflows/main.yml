@@ -17,7 +17,6 @@ jobs:
         run: docker version
 
       - name: Delete Cache
-        if: steps.cache.outputs.cache-hit == 'true'
         run: |
           curl -X DELETE \
             -H "Accept: application/vnd.github.v3+json" \
