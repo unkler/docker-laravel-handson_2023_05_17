@@ -45,15 +45,11 @@ jobs:
         run: docker-compose exec -T app composer dump-autoload -q
 
       - name: Laravel Settings
-        env:
-          DB_USERNAME: admin
-          DB_PASSWORD: password
         run: |
           docker-compose exec -T app cp .env.example .env
           docker-compose exec -T app php artisan key:generate
           docker-compose exec -T app php artisan optimize
           docker-compose exec -T app chmod -R 777 storage bootstrap/cache
-          docker-compose exec -T -e DB_USERNAME=admin -e DB_PASSWORD=password app php artisan migrate
 
       - name: Laravel Version
         run: docker-compose exec -T app php artisan --version
