@@ -51,9 +51,10 @@ jobs:
           php artisan migrate
           php artisan serve &
           php artisan test --filter test_users_can_authenticate_using_the_login_screen
+          php artisan test --filter test_login_screen_can_be_rendered
 
         env:
           APP_ENV: testing
-          APP_URL: http://localhost:8000
+          APP_URL: http://localhost
           DB_HOST: 127.0.0.1
           DB_DATABASE: test_laravel
