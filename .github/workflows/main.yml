@@ -56,7 +56,7 @@ jobs:
       - name: Build assets
         working-directory: ./src
         run: |
-          npm run dev
+          npm run build
 
       - name: Set up environment variables
         working-directory: ./src
