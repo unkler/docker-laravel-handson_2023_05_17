@@ -66,8 +66,8 @@ jobs:
           php artisan migrate
           php artisan test
 
-        # env:
+        env:
         #   APP_ENV: testing
         #   APP_URL: http://127.0.0.1:3000
         #   DB_HOST: 127.0.0.1
-        #   DB_DATABASE: test_laravel
+          DB_DATABASE: test_laravel
