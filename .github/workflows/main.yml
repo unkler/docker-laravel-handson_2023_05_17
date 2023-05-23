@@ -69,5 +69,5 @@ jobs:
         env:
         #   APP_ENV: testing
         #   APP_URL: http://127.0.0.1:3000
-        #   DB_HOST: 127.0.0.1
+          DB_HOST: 127.0.0.1
           DB_DATABASE: test_laravel
