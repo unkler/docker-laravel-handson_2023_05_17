@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: チェックアウト
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: セットアップ PHP
         uses: shivammathur/setup-php@v2
@@ -48,6 +48,15 @@ jobs:
         run: |
           composer install --prefer-dist --no-progress
 
+      - name: Install Node.js dependencies
+        working-directory: ./src
+        run: |
+          npm install
+
+      - name: Build assets
+        working-directory: ./src
+        run: |
+          npm run dev
 
       - name: Set up environment variables
         working-directory: ./src
