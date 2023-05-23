@@ -64,8 +64,7 @@ jobs:
           cp .env.example .env
           php artisan key:generate
           php artisan migrate
-          php artisan test --filter test_users_can_authenticate_using_the_login_screen
-          php artisan test --filter test_login_screen_can_be_rendered
+          php artisan test
 
         env:
           APP_ENV: testing
