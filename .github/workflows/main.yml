@@ -39,8 +39,8 @@ jobs:
           rm composer-setup.php
     
       - name: Install dependencies
+        working-directory: ./src
         run: |
-          cd src
           composer install --prefer-dist --no-progress
 
       - name: Set up environment variables
@@ -53,8 +53,8 @@ jobs:
           php artisan test --filter test_users_can_authenticate_using_the_login_screen
           php artisan test --filter test_login_screen_can_be_rendered
 
-        # env:
-        #   APP_ENV: testing
-        #   APP_URL: http://127.0.0.1:8000
-        #   DB_HOST: 127.0.0.1
-        #   DB_DATABASE: test_laravel
+        env:
+          APP_ENV: testing
+          # APP_URL: http://127.0.0.1:8000
+          DB_HOST: 127.0.0.1
+          DB_DATABASE: test_laravel
