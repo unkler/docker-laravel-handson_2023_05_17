@@ -87,7 +87,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t task-devide-app ./infra/php
+          pwd && ls -l
+          # docker build -t task-devide-app ./infra/php
           # docker login -u AWS -p $(aws ecr get-login-password --region <your-aws-region>) <your-ecr-repository-url>
           # docker tag <your-docker-image> <your-ecr-repository-url>:latest
           # docker push <your-ecr-repository-url>:latest
