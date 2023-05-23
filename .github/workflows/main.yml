@@ -49,12 +49,12 @@ jobs:
           cp .env.example .env
           php artisan key:generate
           php artisan migrate
-          php artisan serve --port=80 &
+          php artisan serve --port=3000 &
           php artisan test --filter test_users_can_authenticate_using_the_login_screen
           php artisan test --filter test_login_screen_can_be_rendered
 
         env:
           APP_ENV: testing
-          # APP_URL: http://127.0.0.1:8000
+          APP_URL: http://127.0.0.1:3000
           DB_HOST: 127.0.0.1
           DB_DATABASE: test_laravel
