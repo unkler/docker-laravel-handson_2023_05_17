@@ -25,11 +25,11 @@ class ShowTaskAssignUseCaseTest extends TestCase
     public function test_作業一覧を取得する(): void
     {
         TaskAssign::factory(30)->create();
-
+        
         $use_case = new ShowTaskAssignUseCase();
 
-        $task_assigns = $use_case->handle(null);
+        $task_assigns = $use_case->handle(true);
 
         $this->assertSame(count($task_assigns), \PaginationConstant::NUMBER_PER_PAGE);
     }
-}
+} 
