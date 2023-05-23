@@ -15,8 +15,8 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: test_laravel
-          MYSQL_USER: phper
-          MYSQL_PASSWORD: secret
+          MYSQL_USER: admin
+          MYSQL_PASSWORD: password
         ports:
           - 3306:3306
 
