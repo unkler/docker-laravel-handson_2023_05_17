@@ -32,6 +32,11 @@ jobs:
           ini-values: |
             memory_limit=512M
 
+      - name: インストール Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18' # 使用するNode.jsバージョンを指定してください
+
       - name: Set up Composer
         run: |
           curl -sS https://getcomposer.org/installer -o composer-setup.php
@@ -42,6 +47,7 @@ jobs:
         working-directory: ./src
         run: |
           composer install --prefer-dist --no-progress
+
 
       - name: Set up environment variables
         working-directory: ./src
