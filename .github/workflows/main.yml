@@ -64,7 +64,7 @@ jobs:
           cp .env.example .env
           php artisan key:generate
 
-      - name: Set up environment variables
+      - name: Migrate and Test
         working-directory: ./src
         run: |
           php artisan migrate
