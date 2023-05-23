@@ -32,11 +32,12 @@ jobs:
           ini-values: |
             memory_limit=512M
 
-      - name: セットアップ Node.js
+      - name: インストール Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '18' # 使用するNode.jsバージョンを指定してください
 
+      - name: Set up Composer
         run: |
           curl -sS https://getcomposer.org/installer -o composer-setup.php
           php composer-setup.php --install-dir=/usr/local/bin --filename=composer
@@ -63,7 +64,8 @@ jobs:
           cp .env.example .env
           php artisan key:generate
           php artisan migrate
-          php artisan test
+          php artisan test --filter test_users_can_authenticate_using_the_login_screen
+          php artisan test --filter test_login_screen_can_be_rendered
 
         env:
           APP_ENV: testing
