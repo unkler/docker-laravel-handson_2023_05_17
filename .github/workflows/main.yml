@@ -63,11 +63,14 @@ jobs:
         run: |
           cp .env.example .env
           php artisan key:generate
+
+      - name: Set up environment variables
+        working-directory: ./src
+        run: |
           php artisan migrate
           php artisan test
-
         env:
-        #   APP_ENV: testing
-        #   APP_URL: http://127.0.0.1:3000
           DB_HOST: 127.0.0.1
           DB_DATABASE: test_laravel
+        #   APP_ENV: testing
+        #   APP_URL: http://127.0.0.1:3000
